@@ -7,11 +7,11 @@ namespace App
 {
     public class ListenerVoice : IHearVoice
     {
-        private IOutput iOutput;
+        private readonly IOutput _output;
 
         public ListenerVoice(IOutput iOutput)
         {
-            this.iOutput = iOutput;
+            _output = iOutput;
         }
         
         public void Voice<T>(IEnumerable<IPet> animals) where T : IPet
@@ -19,7 +19,7 @@ namespace App
             var certainAnimals = animals.OfType<T>();
             foreach (var certainAnimal in certainAnimals)
             {
-                iOutput.Write(certainAnimal.Voice());
+                _output.Write(certainAnimal.Voice());
             }
             
         }
