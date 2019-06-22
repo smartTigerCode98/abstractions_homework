@@ -5,9 +5,10 @@ namespace App
 {
     class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Controller controller = new Controller();
+            var writer = new ConsoleWriter();
+            var controller = new Controller(writer);
             controller.Run();
         }
     }
