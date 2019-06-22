@@ -8,6 +8,13 @@ namespace App
 {
     public class Controller
     {
+        private readonly IOutput _output;
+
+        public Controller(IOutput output)
+        {
+            _output = output;
+        }
+        
         public void Run()
         {
             var animals = new List<Animal>
@@ -20,8 +27,7 @@ namespace App
                 new Tiger("Yuri", "black")
             };
             
-            var writer = new ConsoleWriter();
-            var listenerVoice = new ListenerVoice(writer);
+            var listenerVoice = new ListenerVoice(_output);
             listenerVoice.Voice<Cow>(animals.OfType<IPet>());
         }
     }
